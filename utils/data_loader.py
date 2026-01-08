@@ -3,7 +3,7 @@ import streamlit as st
 
 @st.cache_data
 def load_data():
-    file_path = "data/FMCG_Purchasing_Data.xlsx"
+    file_path = "data/Purchasing_Dataset.xlsx"
     
     po = pd.read_excel(file_path, sheet_name="Purchase_Order")
     gr = pd.read_excel(file_path, sheet_name="Goods_Receipt")
