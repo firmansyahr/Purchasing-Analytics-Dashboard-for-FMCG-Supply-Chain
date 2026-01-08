@@ -2,11 +2,25 @@ import streamlit as st
 import plotly.express as px
 from utils.data_loader import load_data
 
-st.title("📑 Purchase Order & Lead Time")
+# --------------------------------------------------
+# PAGE CONFIG
+# --------------------------------------------------
+st.set_page_config(layout="wide")
+st.title("Purchase Order Status & Lead Time")
 
-po, gr, _, _, _ = load_data()
+# --------------------------------------------------
+# LOAD DATA
+# --------------------------------------------------
+po, gr, inv, cons = load_data()
 
-po_status = po.groupby("po_status").size().reset_index(name="count")
+# --------------------------------------------------
+# PO STATUS DISTRIBUTION
+# --------------------------------------------------
+po_status = (
+    po.groupby("po_status")
+    .size()
+    .reset_index(name="count")
+)
 
 fig = px.bar(
     po_status,
